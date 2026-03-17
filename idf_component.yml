@@ -1,8 +1,20 @@
+name: "brookesia_core"
 version: "2.0.0"
-description: ESP-Brookesia-Core is a core component of ESP-Brookesia, form 0.6.0-beta2.
+description: ESP-Brookesia-Core is a core component of ESP-Brookesia, from 0.6.0-beta2.
+license: "Apache-2.0"
 url: https://github.com/atombloom/brookesia_core
 issues: https://github.com/espressif/esp-brookesia/issues
 repository: https://github.com/atombloom/brookesia_core.git
+maintainers:
+  - "Espressif Systems <sales@espressif.com>"
+tags:
+  - "gui"
+  - "lvgl"
+  - "phone-ui"
+  - "speaker"
+examples:
+  - path: "test_apps/main"
+    description: "Internal test application for Brookesia-Core"
 dependencies:
   idf: ">=5.3"
 
