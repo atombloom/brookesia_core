@@ -30,7 +30,7 @@ constexpr StatusBar::Data STYLESHEET_466_CIRCLE_DARK_STATUS_BAR_DATA = {
     .area = {
         .num = 2,
         .data = {
-            STYLESHEET_466_CIRCLE_DARK_STATUS_BAR_AREA_DATA(50, StatusBar::AreaAlign::START),
+            STYLESHEET_466_CIRCLE_DARK_STATUS_BAR_AREA_DATA(50, StatusBar::AreaAlign::CENTER),
             STYLESHEET_466_CIRCLE_DARK_STATUS_BAR_AREA_DATA(50, StatusBar::AreaAlign::END),
         },
     },
@@ -68,11 +68,11 @@ constexpr StatusBar::Data STYLESHEET_466_CIRCLE_DARK_STATUS_BAR_DATA = {
         .area_index = 0,
     },
     .flags = {
-        .enable_battery_icon = 1,
-        .enable_battery_icon_common_size = 1,
-        .enable_battery_label = 1,
-        .enable_wifi_icon = 1,
-        .enable_wifi_icon_common_size = 1,
+        .enable_battery_icon = 0,
+        .enable_battery_icon_common_size = 0,
+        .enable_battery_label = 0,
+        .enable_wifi_icon = 0,
+        .enable_wifi_icon_common_size = 0,
         .enable_clock = 1,
     },
 };

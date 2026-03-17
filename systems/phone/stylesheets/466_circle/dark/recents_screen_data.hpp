@@ -11,16 +11,17 @@
 namespace esp_brookesia::systems::phone {
 
 constexpr RecentsScreenSnapshot::Data STYLESHEET_466_CIRCLE_DARK_RECENTS_SCREEN_SNAPSHOT_DATA = {
-    .main_size = gui::StyleSize::RECT(300, 352),
+    // 466 圆屏下，快照主高度取 338，标题高度与图像高度之和也必须 ≤ 338
+    .main_size = gui::StyleSize::RECT(300, 338),
     .title = {
-        .main_size = gui::StyleSize::RECT(300, 52),
+        .main_size = gui::StyleSize::RECT(300, 48),
         .main_layout_column_pad = 10,
-        .icon_size = gui::StyleSize::SQUARE(36),
+        .icon_size = gui::StyleSize::SQUARE(32),
         .text_font = gui::StyleFont::SIZE(22),
         .text_color = gui::StyleColor::COLOR(0xFFFFFF),
     },
     .image = {
-        .main_size = gui::StyleSize::RECT(300, 300),
+        .main_size = gui::StyleSize::RECT(300, 290),
         .radius = 20,
     },
 };
