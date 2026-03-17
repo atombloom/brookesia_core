@@ -36,3 +36,10 @@ Currently, Brookesia-Core includes the following built-in systems:
 ## How to Use
 
 Please refer to the documentation - [How to Use](./docs/how_to_use.md).
+
+## 更新
+
+### 2.0.1
+* 增加phone style: 466xcircle
+
+

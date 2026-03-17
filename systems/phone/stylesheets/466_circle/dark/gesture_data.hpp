@@ -9,7 +9,6 @@
 
 namespace esp_brookesia::systems::phone {
 
-// 466 圆形屏幕样式：左右手势指示条配置
 constexpr Gesture::IndicatorBarData STYLESHEET_466_CIRCLE_DARK_GESTURE_LEFT_RIGHT_INDICATOR_BAR_DATA = {
     .main = {
         .size_min = gui::StyleSize::RECT(10, 0),
@@ -28,7 +27,6 @@ constexpr Gesture::IndicatorBarData STYLESHEET_466_CIRCLE_DARK_GESTURE_LEFT_RIGH
     },
 };
 
-// 466 圆形屏幕样式：底部手势指示条配置
 constexpr Gesture::IndicatorBarData STYLESHEET_466_CIRCLE_DARK_GESTURE_BOTTOM_INDICATOR_BAR_DATA = {
     .main = {
         .size_min = gui::StyleSize::RECT(0, 10),
@@ -47,7 +45,6 @@ constexpr Gesture::IndicatorBarData STYLESHEET_466_CIRCLE_DARK_GESTURE_BOTTOM_IN
     },
 };
 
-// 466 圆形屏幕样式：手势整体参数配置
 constexpr Gesture::Data STYLESHEET_466_CIRCLE_DARK_GESTURE_DATA = {
     .detect_period_ms = 20,
     .threshold = {

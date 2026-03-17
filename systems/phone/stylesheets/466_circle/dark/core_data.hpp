@@ -10,12 +10,11 @@
 
 namespace esp_brookesia::systems::phone {
 
-// 466 圆形屏幕样式：核心 Display 配置，保持与 480x480 样式一致
 constexpr base::Display::Data STYLESHEET_466_CIRCLE_DARK_CORE_DISPLAY_DATA = {
     .background = {
         .color = gui::StyleColor::COLOR(0x1A1A1A),
-        // .wallpaper_image_resource = gui::StyleImage::IMAGE(&esp_brookesia_image_middle_wallpaper_dark_480_480),
-        .wallpaper_image_resource = gui::StyleImage::IMAGE(nullptr), // 禁用壁纸
+        // 设置壁纸
+        .wallpaper_image_resource = gui::StyleImage::IMAGE(&esp_brookesia_image_middle_wallpaper_dark_480_480),
     },
     .text = {
         .default_fonts_num = 21,
@@ -55,7 +54,6 @@ constexpr base::Display::Data STYLESHEET_466_CIRCLE_DARK_CORE_DISPLAY_DATA = {
     },
 };
 
-// 466 圆形屏幕样式：核心 Manager 配置，保持与 480x480 样式一致
 constexpr base::Manager::Data STYLESHEET_466_CIRCLE_DARK_CORE_MANAGER_DATA = {
     .app = {
         .max_running_num = 3,
@@ -65,12 +63,11 @@ constexpr base::Manager::Data STYLESHEET_466_CIRCLE_DARK_CORE_MANAGER_DATA = {
     },
 };
 
-// 466 圆形屏幕样式：名称及屏幕尺寸（直径 466 像素的圆）
-constexpr const char *STYLESHEET_466_CIRCLE_DARK_CORE_INFO_DATA_NAME = "466 Circle Dark";
+constexpr const char *STYLESHEET_466_CIRCLE_DARK_CORE_INFO_DATA_NAME = "466x466 Circle Dark";
 
 constexpr base::Context::Data STYLESHEET_466_CIRCLE_DARK_CORE_DATA = {
     .name = STYLESHEET_466_CIRCLE_DARK_CORE_INFO_DATA_NAME,
-    .screen_size = gui::StyleSize::CIRCLE(466),
+    .screen_size = gui::StyleSize::RECT(466, 466),
     .display = STYLESHEET_466_CIRCLE_DARK_CORE_DISPLAY_DATA,
     .manager = STYLESHEET_466_CIRCLE_DARK_CORE_MANAGER_DATA,
 };

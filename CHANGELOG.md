@@ -181,3 +181,6 @@
 * feat(repo): init project
 * feat(systems): add 'Phone' system
 * feat(widgets): support 'Status Bar' and 'Navigation Bar' visual mode
+
+## v2.0.0 
+* add phone style

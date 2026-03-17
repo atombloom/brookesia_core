@@ -9,7 +9,6 @@
 
 namespace esp_brookesia::systems::phone {
 
-// 466 圆形屏幕样式：应用启动器图标配置
 constexpr AppLauncherIcon::Data STYLESHEET_466_CIRCLE_DARK_APP_LAUNCHER_ICON_DATA = {
     .main = {
         .size = gui::StyleSize::SQUARE(180),
@@ -25,7 +24,6 @@ constexpr AppLauncherIcon::Data STYLESHEET_466_CIRCLE_DARK_APP_LAUNCHER_ICON_DAT
     }
 };
 
-// 466 圆形屏幕样式：应用启动器整体布局配置
 constexpr AppLauncherData STYLESHEET_466_CIRCLE_DARK_APP_LAUNCHER_DATA = {
     .main = {
         .y_start = 0,

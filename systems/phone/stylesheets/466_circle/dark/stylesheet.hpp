@@ -15,7 +15,6 @@
 
 namespace esp_brookesia::systems::phone {
 
-// 466 圆形屏幕样式：显示层配置
 constexpr Display::Data STYLESHEET_466_CIRCLE_DARK_DISPLAY_DATA = {
     .status_bar = {
         .data = STYLESHEET_466_CIRCLE_DARK_STATUS_BAR_DATA,
@@ -43,7 +42,6 @@ constexpr Display::Data STYLESHEET_466_CIRCLE_DARK_DISPLAY_DATA = {
     },
 };
 
-// 466 圆形屏幕样式：Manager 配置
 constexpr Manager::Data STYLESHEET_466_CIRCLE_DARK_MANAGER_DATA = {
     .gesture = STYLESHEET_466_CIRCLE_DARK_GESTURE_DATA,
     .gesture_mask_indicator_trigger_time_ms = 0,
@@ -61,7 +59,6 @@ constexpr Manager::Data STYLESHEET_466_CIRCLE_DARK_MANAGER_DATA = {
     },
 };
 
-// 466 圆形屏幕样式：总样式对象
 constexpr Stylesheet STYLESHEET_466_CIRCLE_DARK = {
     .core = STYLESHEET_466_CIRCLE_DARK_CORE_DATA,
     .display = STYLESHEET_466_CIRCLE_DARK_DISPLAY_DATA,

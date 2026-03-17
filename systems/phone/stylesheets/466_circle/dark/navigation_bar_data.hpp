@@ -10,7 +10,6 @@
 
 namespace esp_brookesia::systems::phone {
 
-// 466 圆形屏幕样式：底部导航栏配置
 constexpr NavigationBar::Data STYLESHEET_466_CIRCLE_DARK_NAVIGATION_BAR_DATA = {
     .main = {
         .size = gui::StyleSize::RECT_W_PERCENT(100, 64),
