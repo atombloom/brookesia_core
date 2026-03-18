@@ -84,7 +84,8 @@ bool Manager::begin(void)
             false, "Set right indicator bar visible failed"
         );
         ESP_UTILS_CHECK_FALSE_RETURN(
-            gesture->setIndicatorBarVisible(Gesture::IndicatorBarType::BOTTOM, true),
+            // 底部指示条默认隐藏；需要时由手势过程中的逻辑临时显示
+            gesture->setIndicatorBarVisible(Gesture::IndicatorBarType::BOTTOM, false),
             false, "Set bottom indicator bar visible failed"
         );
 
@@ -389,10 +390,10 @@ bool Manager::processGestureScreenChange(Screen screen, void *param)
             "Gesture set right indicator bar visible failed"
         );
     }
+    // 屏幕切换时把底部指示条收起，避免常驻；后续由手势交互回调按需显示
     ESP_UTILS_CHECK_FALSE_RETURN(
-        _gesture->setIndicatorBarVisible(
-            Gesture::IndicatorBarType::BOTTOM, _flags.enable_gesture_show_bottom_indicator_bar
-        ), false, "Gesture set bottom indicator bar visible failed"
+        _gesture->setIndicatorBarVisible(Gesture::IndicatorBarType::BOTTOM, false),
+        false, "Gesture set bottom indicator bar visible failed"
     );
 
     return true;
