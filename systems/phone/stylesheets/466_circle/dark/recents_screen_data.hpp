@@ -10,22 +10,27 @@
 
 namespace esp_brookesia::systems::phone {
 
+// 466 圆形屏幕样式：最近任务卡片快照配置
+// 注意：主区域和标题/图片高度之和必须不超过父容器高度（当前为 338），否则会触发校准报错
 constexpr RecentsScreenSnapshot::Data STYLESHEET_466_CIRCLE_DARK_RECENTS_SCREEN_SNAPSHOT_DATA = {
-    // 466 圆屏下，快照主高度取 338，标题高度与图像高度之和也必须 ≤ 338
+    // 主卡片区域：宽度保持 300，高度收缩到 338 以内以适配 466 圆形屏幕可用区域（338）
     .main_size = gui::StyleSize::RECT(300, 338),
     .title = {
-        .main_size = gui::StyleSize::RECT(300, 48),
+        // 标题高度保持 52 像素
+        .main_size = gui::StyleSize::RECT(300, 52),
         .main_layout_column_pad = 10,
-        .icon_size = gui::StyleSize::SQUARE(32),
+        .icon_size = gui::StyleSize::SQUARE(36),
         .text_font = gui::StyleFont::SIZE(22),
         .text_color = gui::StyleColor::COLOR(0xFFFFFF),
     },
     .image = {
-        .main_size = gui::StyleSize::RECT(300, 290),
+        // 图片高度从 300 调整为 280，使标题高度 + 图片高度 = 332 <= 338（主区域高度）
+        .main_size = gui::StyleSize::RECT(300, 280),
         .radius = 20,
     },
 };
 
+// 466 圆形屏幕样式：最近任务整体布局配置
 constexpr RecentsScreen::Data STYLESHEET_466_CIRCLE_DARK_RECENTS_SCREEN_DATA = {
     .main = {
         .size = gui::StyleSize::RECT_PERCENT(100, 100),

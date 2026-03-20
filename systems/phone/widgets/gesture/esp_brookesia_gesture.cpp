@@ -628,8 +628,10 @@ void Gesture::onIndicatorBarScaleBackAnimationReadyCallback(lv_anim_t *anim)
     ESP_UTILS_CHECK_VALUE_EXIT(type_int, 0, static_cast<int>(Gesture::IndicatorBarType::MAX), "Invalid indicator bar type");
 
     gesture->_flags.is_indicator_bar_scale_back_anim_running[type_int] = false;
-    // 动画结束后隐藏指示条：让底部指示条也能“平时隐藏”，仅在手势操作时短暂出现
-    ESP_UTILS_CHECK_FALSE_EXIT(gesture->setIndicatorBarVisible(type, false), "Hide indicator bar failed");
+    // If the animation is finished, hide the indicator bar (except the bottom one)
+    if (type != Gesture::IndicatorBarType::BOTTOM) {
+        ESP_UTILS_CHECK_FALSE_EXIT(gesture->setIndicatorBarVisible(type, false), "Hide indicator bar failed");
+    }
 }
 
 } // namespace esp_brookesia::systems::phone
