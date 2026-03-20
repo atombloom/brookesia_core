@@ -363,11 +363,10 @@ bool Gesture::controlIndicatorBarScaleBackAnim(Gesture::IndicatorBarType type, b
             return true;
         }
         if (length == _indicator_bar_max_lengths[type_int]) {
-            if (type != Gesture::IndicatorBarType::BOTTOM) {
-                ESP_UTILS_CHECK_FALSE_RETURN(
-                    setIndicatorBarVisible(type, false), false, "Set indicator bar visible failed"
-                );
-            }
+            // 指示条已经回到初始长度时直接隐藏，包含底部指示条
+            ESP_UTILS_CHECK_FALSE_RETURN(
+                setIndicatorBarVisible(type, false), false, "Set indicator bar visible failed"
+            );
             return true;
         }
         lv_anim_set_values(_indicator_bar_scale_back_anims[type_int].get(), length, _indicator_bar_max_lengths[type_int]);
@@ -628,10 +627,8 @@ void Gesture::onIndicatorBarScaleBackAnimationReadyCallback(lv_anim_t *anim)
     ESP_UTILS_CHECK_VALUE_EXIT(type_int, 0, static_cast<int>(Gesture::IndicatorBarType::MAX), "Invalid indicator bar type");
 
     gesture->_flags.is_indicator_bar_scale_back_anim_running[type_int] = false;
-    // If the animation is finished, hide the indicator bar (except the bottom one)
-    if (type != Gesture::IndicatorBarType::BOTTOM) {
-        ESP_UTILS_CHECK_FALSE_EXIT(gesture->setIndicatorBarVisible(type, false), "Hide indicator bar failed");
-    }
+    // 动画结束后统一隐藏指示条，满足“默认隐藏，仅操作时显示”
+    ESP_UTILS_CHECK_FALSE_EXIT(gesture->setIndicatorBarVisible(type, false), "Hide indicator bar failed");
 }
 
 } // namespace esp_brookesia::systems::phone
