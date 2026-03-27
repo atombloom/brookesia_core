@@ -17,6 +17,11 @@ using namespace esp_brookesia::gui;
 
 namespace esp_brookesia::systems::phone {
 
+namespace {
+constexpr uint32_t RECENTS_TRIGGER_DURATION_MS = 300;
+constexpr float RECENTS_TRIGGER_DISTANCE_PX = 260.0F;
+} // namespace
+
 Manager::Manager(base::Context &core_in, Display &display_in, const Data &data_in)
     : base::Manager(core_in, core_in.getData().manager)
     , display(display_in)
@@ -647,6 +652,8 @@ void Manager::onGestureNavigationPressingEventCallback(lv_event_t *event)
     Manager *manager = nullptr;
     Gesture::Info *gesture_info = nullptr;
     base::Manager::NavigateType navigation_type = base::Manager::NavigateType::MAX;
+    bool is_recents_duration_reached = false;
+    bool is_recents_distance_reached = false;
 
     // ESP_UTILS_LOGD("Gesture navigation pressing event callback");
     ESP_UTILS_CHECK_NULL_EXIT(event, "Invalid event");
@@ -669,10 +676,15 @@ void Manager::onGestureNavigationPressingEventCallback(lv_event_t *event)
     if ((gesture_info->start_area & (Gesture::AREA_LEFT_EDGE | Gesture::AREA_RIGHT_EDGE)) &&
             (gesture_info->direction & Gesture::DIR_HOR) && manager->_flags.enable_gesture_navigation_back) {
         navigation_type = base::Manager::NavigateType::BACK;
-    } else if ((gesture_info->start_area & Gesture::AREA_BOTTOM_EDGE) && (!gesture_info->flags.short_duration) &&
-               (gesture_info->direction & Gesture::DIR_UP) && manager->_flags.enable_gesture_navigation_recents_app) {
-        // Check if there is a "recents_screen" gesture
+    } else if ((gesture_info->start_area & Gesture::AREA_BOTTOM_EDGE) &&
+               (gesture_info->direction & Gesture::DIR_UP) &&
+               manager->_flags.enable_gesture_navigation_recents_app) {
+        // 最近应用触发采用“时间 + 位移”联合判定，避免快速短滑被误判为最近应用。
+        is_recents_duration_reached = (gesture_info->duration_ms > RECENTS_TRIGGER_DURATION_MS);
+        is_recents_distance_reached = (gesture_info->distance_px > RECENTS_TRIGGER_DISTANCE_PX);
+        if (is_recents_duration_reached && is_recents_distance_reached) {
         navigation_type = base::Manager::NavigateType::RECENTS_SCREEN;
+        }
     }
 
     // Only process the navigation event if the navigation type is valid
